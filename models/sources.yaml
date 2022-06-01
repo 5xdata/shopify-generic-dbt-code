@@ -1,0 +1,77 @@
+version: 2
+
+sources:
+  - name: SHOPIFY
+    description: "Shopify production data for the culprit webstore. **[Read more](https://docs.google.com/presentation/d/1wSWI7SbY4NMtyRLWdg2Z4LW3-SRCF8K7McN0VzLjh3w)**"
+    database: FIVETRAN_DB
+    schema: SHOPIFY
+    quoting:
+      database: true
+      schema: true
+      identifier: true
+    loader: fivetran
+    loaded_at_field: _FIVETRAN_SYNCED
+
+    tables:
+      - name: ABANDONED_APPLIED_DISCOUNT
+      - name: ABANDONED_CHECKOUT
+      - name: ABANDONED_CHECKOUT_DISCOUNT_CODE
+      - name: ABANDONED_CHECKOUT_LINE
+      - name: ABANDONED_CHECKOUT_SHIPPING_LINE
+      - name: ABANDONED_CHECKOUT_TAX_LINE
+      - name: ABANDONED_CHECKOUT_URL_TAG
+      - name: COLLECTION
+      - name: COLLECTION_PRODUCT
+      - name: COUNTRY
+      - name: CUSTOMER
+      - name: CUSTOMER_ADDRESS
+      - name: CUSTOMER_SAVED_SEARCH
+      - name: CUSTOMER_TAG
+      - name: DISCOUNT_ALLOCATION
+      - name: DISCOUNT_APPLICATION
+      - name: DISCOUNT_CODE
+      - name: DRAFT_ORDER
+      - name: DRAFT_ORDER_LINE
+      - name: DRAFT_ORDER_LINE_TAX_LINE
+      - name: DRAFT_ORDER_NOTE_ATTRIBUTE
+      - name: DRAFT_ORDER_TAG
+      - name: FIVETRAN_AUDIT
+      - name: FULFILLMENT
+      - name: FULFILLMENT_EVENT
+      - name: FULFILLMENT_ORDER_LINE
+      - name: GIFT_CARD
+      - name: INVENTORY_ITEM
+      - name: INVENTORY_LEVEL
+      - name: INVENTORY_LEVEL_5MAY
+      - name: LOCATION
+      - name: METAFIELD
+      - name: ORDER
+      - name: ORDER_ADJUSTMENT
+      - name: ORDER_DISCOUNT_CODE
+      - name: ORDER_LINE
+      - name: ORDER_LINE_REFUND
+      - name: ORDER_NOTE_ATTRIBUTE
+      - name: ORDER_RISK
+      - name: ORDER_SHIPPING_LINE
+      - name: ORDER_SHIPPING_TAX_LINE
+      - name: ORDER_TAG
+      - name: ORDER_URL_TAG
+      - name: PRICE_RULE
+      - name: PRICE_RULE_ENT_COLLECTION
+      - name: PRICE_RULE_ENT_PRODUCT
+      - name: PRICE_RULE_PREREQ_COLLECTION
+      - name: PRICE_RULE_PREREQ_CUSTOMER
+      - name: PRICE_RULE_PREREQ_SAVED_SEARCH
+      - name: PRODUCT
+      - name: PRODUCT_IMAGE
+      - name: PRODUCT_OPTION
+      - name: PRODUCT_TAG
+      - name: PRODUCT_VARIANT
+      - name: PROVINCE
+      - name: REFUND
+      - name: SHOP
+      - name: TAX_LINE
+      - name: TENDER_TRANSACTION
+      - name: TRANSACTION
+      - name: USER
+
