@@ -92,6 +92,7 @@ with order_tag as (
            ,o.BILLING_ADDRESS_COUNTRY_CODE
            ,cast(o.BILLING_ADDRESS_LATITUDE as decimal(11,8)) as BILLING_ADDRESS_LATITUDE
            ,cast(o.BILLING_ADDRESS_LONGITUDE as decimal(11,8)) as BILLING_ADDRESS_LONGITUDE
+           ,o.total_line_items_price
       from {{ source('SHOPIFY','ORDER') }} o
       left join order_tag ot
         on o.id = ot.order_id
