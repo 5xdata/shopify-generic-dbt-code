@@ -1,3 +1,5 @@
+{{ config(materialized='table') }}
+
 select
 osl.price,
 o.SHIPPING_ADDRESS_CITY,

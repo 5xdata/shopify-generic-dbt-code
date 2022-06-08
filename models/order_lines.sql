@@ -1,3 +1,4 @@
+{{ config(materialized='table') }}
 
 with order_line_tax as (
     select order_line_id
@@ -42,6 +43,7 @@ with order_line_tax as (
             ,ol.sku
             ,ol.name product_variant_name
             ,ol.title
+            ,p.PRODUCT_TYPE
             ,ol.price as original_unit_price
             ,ol.quantity
             ,(original_unit_price * ol.quantity) as original_line_price

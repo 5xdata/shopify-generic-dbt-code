@@ -1,3 +1,4 @@
+{{ config(materialized='table') }}
 
 with order_tag as (
     select order_id
@@ -35,7 +36,14 @@ with order_tag as (
       left join {{ source('SHOPIFY','DISCOUNT_APPLICATION') }}  dap
         on osl.order_id = dap.order_id
        and dap.target_type = 'shipping_line'
+),
+customer_address as (
+    select 
+        customer_id, city, province_code, country_code
+    from {{ source ('SHOPIFY', 'CUSTOMER_ADDRESS') }} 
+    where is_default = true
 )
+
 , order_details as (
     select o.id as order_id
            ,o.name as order_num
@@ -93,6 +101,10 @@ with order_tag as (
            ,cast(o.BILLING_ADDRESS_LATITUDE as decimal(11,8)) as BILLING_ADDRESS_LATITUDE
            ,cast(o.BILLING_ADDRESS_LONGITUDE as decimal(11,8)) as BILLING_ADDRESS_LONGITUDE
            ,o.total_line_items_price
+           ,c.created_at as customer_created_at
+           ,upper(c_add.city) city
+           ,c_add.province_code
+           ,c_add.country_code
       from {{ source('SHOPIFY','ORDER') }} o
       left join order_tag ot
         on o.id = ot.order_id
@@ -104,5 +116,9 @@ with order_tag as (
         on o.id = olbu.order_id
       left join {{ ref('stg_order_utm') }} as order_utm
         on o.id = order_utm.order_id
+      left join {{ source('SHOPIFY','CUSTOMER') }} c 
+        on c.id = o.customer_id
+      left join customer_address c_add
+        on c_add.customer_id = o.customer_id
 )
 select * from order_details

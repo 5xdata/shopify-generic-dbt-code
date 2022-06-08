@@ -1,3 +1,4 @@
+
 WITH orders as(
     select * from {{ source('SHOPIFY', 'ORDER') }}
 )

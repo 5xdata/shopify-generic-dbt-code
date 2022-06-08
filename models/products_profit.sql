@@ -1,5 +1,6 @@
-select ol.title,
-ol.PRODUCT_TYPE, coalesce(product_price, 0) as product_price,
+{{ config(materialized='table') }}
+
+select ol.title, ol.PRODUCT_TYPE, coalesce(product_price, 0) as product_price,
 QUANTITY,
 ORIGINAL_UNIT_PRICE,
 TOTAL_LINE_DISCOUNT,

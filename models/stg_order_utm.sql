@@ -5,7 +5,7 @@ with shopify_utm_data as (
                      else null
                  end) as ot_utm_source
            ,max(case when coalesce(ona.name,'') like '%utm_source%' and ona.value is not null  
-                     then decode_url(ona.value)
+                     then (ona.value)
                      else null
                  end) as ona_utm_source
            ,max(case when ot.key = 'utm_medium'
@@ -13,7 +13,7 @@ with shopify_utm_data as (
                      else null
                  end) as ot_utm_medium
             ,max(case when coalesce(ona.name,'') = 'utm_medium' and ona.value is not null
-                      then decode_url(ona.value)
+                      then (ona.value)
                       else null
                   end) as ona_utm_medium
             ,max(case when ot.key = 'utm_campaign'
@@ -21,7 +21,7 @@ with shopify_utm_data as (
                       else null
                   end) as ot_utm_campaign
             ,max(case when coalesce(ona.name,'') = 'utm_campaign' and ona.value is not null
-                      then decode_url(ona.value)
+                      then (ona.value)
                       else null
                   end) as ona_utm_campaign
             ,max(case when ot.key = 'utm_term'
@@ -29,7 +29,7 @@ with shopify_utm_data as (
                       else null
                   end) as ot_utm_term
             ,max(case when coalesce(ona.name,'') = 'utm_term' and ona.value is not null
-                      then decode_url(ona.value)
+                      then (ona.value)
                       else null
                   end) as ona_utm_term
             ,max(case when ot.key = 'utm_content'
@@ -37,7 +37,7 @@ with shopify_utm_data as (
                       else null
                   end) as ot_utm_content
             ,max(case when coalesce(ona.name,'') = 'utm_content'  and ona.value is not null
-                      then decode_url(ona.value)
+                      then (ona.value)
                       else null
                   end) as ona_utm_content
       from {{ source('SHOPIFY','ORDER_URL_TAG') }} ot
