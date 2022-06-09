@@ -3,7 +3,7 @@
 with average_customer_lifespan as (
 	select 
 		country_code,
-		avg(round(datediff('day', first_order_date, recent_order_date)::FLOAT / (365::FLOAT / 12)))
+		avg(round(datediff('day', first_order_date, recent_order_date)::FLOAT / (365::FLOAT / 12))) as customer_lifespan
 	from {{ ref('shopify_analytics') }}
 	where total_orders > 1
 	group by 1 
